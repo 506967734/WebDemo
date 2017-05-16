@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--&lt;!&ndash;<bean class="web.controller.HelloWorldController"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;表示将请求的URL和Bean名字映射，如URL为 “上下文/hello”，则Spring配置文件必须有一个名字为“/hello”的Bean，上下文默认忽略。&ndash;&gt;-->
+    <!--&lt;!&ndash;HandlerMapping &ndash;&gt;-->
+    <!--&lt;!&ndash;<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;表示所有实现了org.springframework.web.servlet.mvc.Controller接口的Bean可以作为Spring Web MVC中的处理器&ndash;&gt;-->
+    <!--&lt;!&ndash; HandlerAdapter &ndash;&gt;-->
+    <!--&lt;!&ndash;<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>&ndash;&gt;-->
+
+
+    <!--&lt;!&ndash;&lt;!&ndash; 处理器 &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/hello" class="web.controller.HelloWorldController"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/helloA" class="web.controller.HelloWorldController"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/helloWithoutReturnModelAndView" class="web.controller.HelloWorldWithoutReturnModelAndViewController"/>&ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; 在chapter4-servlet.xml配置处理器&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;以上配置表示只支持POST请求，如果是GET请求客户端将收到“HTTP Status 405 - Request method 'GET' not supported”。&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/helloWithPOST" class="web.controller.HelloWorldController">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<property name="supportedMethods" value="POST"></property>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;在chapter4-servlet.xml配置处理器 &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/helloRequireSession" class="web.controller.HelloWorldController">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<property name="requireSession" value="true"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;在chapter4-servlet.xml配置处理器 &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;<bean name="/helloCache"&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;class="web.controller.HelloWorldCacheController">&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;<property name="cacheSeconds" value="5"/>&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/helloNoCache"&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;class="web.controller.HelloWorldCacheController">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<property name="cacheSeconds" value="0"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;在chapter4-servlet.xml配置处理器 &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/helloLastModified"&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;class="web.controller.HelloWorldLastModifiedCacheController">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; 在chapter4-servlet.xml配置处理器 &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/forwardToServlet"&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;class="org.springframework.web.servlet.mvc.ServletForwardingController">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<property name="servletName" value="forwarding">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</property>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+
+    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; 在chapter4-servlet.xml配置处理器 &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/test" class="web.controller.TestController">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/handlerInterceptor1" class="web.controller.HandlerInterceptor1">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean name="/handlerInterceptor2" class="web.controller.HandlerInterceptor2">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<property name="interceptors">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<list>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<ref bean="handlerInterceptor1"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<ref bean="handlerInterceptor2"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</list>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</property>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;</bean>&ndash;&gt;&ndash;&gt;-->
+    <!--<bean class="web.controller.CancelController"/>-->
+    <!--<bean class="web.controller.SuccessController"/>-->
+    <!--&lt;!&ndash; ①注册ConversionService &ndash;&gt;-->
+    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+    <!--<property name="converters">-->
+    <!--<list>-->
+    <!--<bean class="web.controller.chapter7.support.converter.PhoneNumberToStringConverter"/>-->
+    <!--<bean class="web.controller.chapter7.support.converter.StringToPhoneNumberConverter"/>-->
+    <!--<bean class="web.controller.chapter7.support.converter.StringToDateConverter">-->
+    <!--<constructor-arg value="yyyy-MM-dd"/>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--<property name="formatters">-->
+    <!--<list>-->
+    <!--<bean class="web.controller.chapter7.support.formatter.PhoneNumberFormatAnnotationFormatterFactory"/>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;&lt;!&ndash; 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">&ndash;&gt;-->
+    <!--&lt;!&ndash;<property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; 如果不加默认到 使用classpath下的 ValidationMessages.properties &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
+
+    <!--&lt;!&ndash; ②使用ConfigurableWebBindingInitializer注册conversionService &ndash;&gt;-->
+    <!--<bean id="webBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">-->
+    <!--<property name="conversionService" ref="conversionService"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;***********************************************chapter6代码*************************************************&ndash;&gt;-->
+    <!--&lt;!&ndash; ViewResolver :用于支持 Servlet、JSP 视图解析&ndash;&gt;-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <!--viewClass:JstlView 表示 JSP 模板页面需要使用 JSTL 标签库，classpath 中必须包含 jstl 的相关 jar 包;-->
+        <!--prefix 和 suffix:查找视图页面的前缀和后缀(前缀[逻辑视图名]后缀)，比如传进来的逻辑视图名为 hello，则该该-->
+        <!--jsp 视图页面应该存放在“WEB-INF/jsp/hello.jsp”;-->
+    </bean>
+    <!--&lt;!&ndash;Spring3.1开始的注解 HandlerMapping &ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">-->
+    <!--<property name="interceptors">-->
+    <!--<list>-->
+    <!--<bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor">-->
+    <!--<constructor-arg ref="conversionService"/>-->
+    <!--</bean>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;Spring3.1开始的注解 HandlerAdapter &ndash;&gt;-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+    <!--<property name="webBindingInitializer" ref="webBindingInitializer"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;处理器&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.HelloWorldController"/>-->
+    <!--&lt;!&ndash;处理器&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.HelloWorldController2"/>-->
+    <!--&lt;!&ndash;处理器&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.HelloWorldController3"/>-->
+    <!--&lt;!&ndash;处理器&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.HelloWorldController4"/>-->
+    <!--&lt;!&ndash;处理器&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.HelloWorldController5"/>-->
+    <!--&lt;!&ndash;处理器&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.HelloWorldController6"/>-->
+    <!--&lt;!&ndash;处理器&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.RequestMethodController"/>-->
+    <!--&lt;!&ndash;**************************************************END********************************************************&ndash;&gt;-->
+    <!--&lt;!&ndash;**************************************************Header*****************************************************&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.HeaderController"/>-->
+    <!--&lt;!&ndash;**************************************************END********************************************************&ndash;&gt;-->
+    <!--&lt;!&ndash;**************************************************Request*****************************************************&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.request.RequestContentTypeController"/>-->
+    <!--<bean class="web.controller.chapter6.request.ResponseContentTypeController"/>-->
+    <!--<bean class="web.controller.chapter6.request.ConsumesController"/>-->
+    <!--<bean class="web.controller.chapter6.request.ProducesController"/>-->
+    <!--&lt;!&ndash;**************************************************END********************************************************&ndash;&gt;-->
+    <!--&lt;!&ndash;**************************************************ParamType*****************************************************&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter6.paramtype.RequestParamController"/>-->
+    <!--<bean class="web.controller.chapter6.paramtype.PathVariableTypeController"/>-->
+    <!--<bean class="web.controller.chapter6.paramtype.CookieValueTypeController"/>-->
+    <!--<bean class="web.controller.chapter6.paramtype.HeaderValueTypeController"/>-->
+    <!--<bean class="web.controller.chapter6.paramtype.ModelAttributeTypeController"/>-->
+    <!--<bean class="web.controller.chapter6.paramtype.SessionAttributeController"/>-->
+    <!--&lt;!&ndash;**************************************************END********************************************************&ndash;&gt;-->
+    <!--&lt;!&ndash;**************************************************Binder*****************************************************&ndash;&gt;-->
+    <!--<bean class="web.controller.chapter7.DataBinderTestController"/>-->
+    <!--&lt;!&ndash;**************************************************END********************************************************&ndash;&gt;-->
+    <!--<bean class="web.controller.LoginController"/>-->
+
+    <!-- 支持spring mvc新的注解类型 	-->
+    <!--  -->
+    <context:annotation-config/>
+
+
+    <!-- mvc驱动配置 -->
+    <!--  -->
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
+
+
+    <!-- mvc扫描 -->
+    <!-- -->
+    <context:component-scan base-package="web.controller"/>
+</beans>
