@@ -1,9 +1,11 @@
 package web.controller.model;
 
+import java.io.Serializable;
+
 /**
  * Created by apple on 2017/5/14.
  */
-public class User {
+public class User implements Serializable {
 
     private String username;
     private String password;

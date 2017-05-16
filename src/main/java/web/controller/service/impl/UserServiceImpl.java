@@ -1,26 +1,27 @@
-package web.controller.service;
+package web.controller.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.controller.dao.IUserDao;
-import web.controller.dao.UserDaoImpl;
 import web.controller.model.User;
+import web.controller.service.IUserService;
 
 /**
  * Created by apple on 2017/5/14.
  */
-@Service("IUserService")
+@Service
 public class UserServiceImpl implements IUserService {
-    private IUserDao userDao;
 
-    public UserServiceImpl() {
-        userDao = new UserDaoImpl();
-    }
+    @Autowired
+    private IUserDao userDao;
 
     public User findUserById(int id) {
         return userDao.findUserById(id);
+        //return userDao.findUserById(id);
     }
 
     public void addUser(User user) {
         userDao.addUser(user);
+
     }
 }

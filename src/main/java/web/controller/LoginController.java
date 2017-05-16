@@ -1,12 +1,12 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import web.controller.model.User;
 import web.controller.service.IUserService;
-import web.controller.service.UserServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,9 @@ import java.util.Map;
  */
 @Controller
 public class LoginController {
-    private IUserService service = new UserServiceImpl();
+
+    @Autowired
+    private IUserService service;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String index(User user) {
