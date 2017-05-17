@@ -21,13 +21,13 @@ public class LoginController {
     private IUserService service;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String index(User user) {
+    public String index() {
         return "login";
     }
 
     @ResponseBody
     @RequestMapping(value = "/toJson", method = RequestMethod.POST)
-    public Map<String, Object> toJson(User user) {
+    public Map<String, Object> toJson(User user) throws Exception {
         service.addUser(user); //一起测试了
         Map map = new HashMap();
         User user1 = service.findUserById(2);

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="web.controller.dao.IUserDao">
+    <resultMap id="userResult" type="web.controller.model.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="last_login_time" property="lastLoginTime" jdbcType="DATE"/>
+        <result column="login_time" property="loginTime" jdbcType="DATE"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="user_alias" property="userAlias" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="user">
+        id,last_login_time,login_time,username, password,create_time,user_alias
+    </sql>
     <!--根据ID获取对应的值  -->
     <select id="findUserById" parameterType="int" resultType="web.controller.model.User">
         select * from USER where id = #{id}
@@ -8,4 +21,15 @@
     <insert id="addUser" parameterType="web.controller.model.User">
         insert into USER (username,password) values(#{username},#{password})
     </insert>
+
+    <insert id="save" parameterType="web.controller.model.User">
+        insert into USER (username, password,create_time,user_alias)
+        values(#{username},#{password},#{createTime},#{userAlias})
+    </insert>
+
+    <select id="findByUsername" resultMap="userResult">
+        select
+        <include refid="user"/>
+        from USER where username = #{username}
+    </select>
 </mapper>

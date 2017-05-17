@@ -1,21 +1,100 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: apple
-  Date: 2017/4/28
-  Time: 下午12:50
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<!-- register.jsp 注册展示页面-->
-<form method="post">
-    username:<input type="text" name="username" value="${user.username}"><br/>
-    password:<input type="password" name="username"><br/>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+   <link type="text/css" rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.css" />
+  <!-- Font Awesome -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/AdminLTE/dist/css/font-awesome.min.css"/>
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/AdminLTE/dist/css/ionicons.min.css"/>
+ <!-- Theme style -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/AdminLTE/dist/css/AdminLTE.min.css"/>
+    <!-- iCheck -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/AdminLTE/plugins/iCheck/square/blue.css"/>
+  
+  </head>
+    <body class="hold-transition register-page">
+    <div class="register-box">
+      <div class="register-logo">
+        <a href=""><b>Admin</b>LTE</a>
+      </div>
 
-    <input type="submit" value="注册"/></form>
-</body>
+      <div class="register-box-body">
+        <p class="login-box-msg">注册</p>
+        <form id="registerForm" action="/Webapp/register" method="post">
+        <div style="color:red;">${isUserDuplicate}</div>
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control required" placeholder="Username" name="username">
+            <span class="form-control-feedback"></span>           
+          </div>
+       
+          <div class="form-group has-feedback">
+            <input id="password" type="password" class="form-control required" placeholder="Password" name="password">
+            <span class="form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input id="passwordRetype" type="password" class="form-control required" placeholder="Retype password" >
+            <span class="form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="checkbox icheck">
+                <label>
+                  <input type="checkbox"> I agree to the <a href="#">terms</a>
+                </label>
+              </div>
+            </div><!-- /.col -->
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">注册</button>
+            </div><!-- /.col -->
+          </div>
+        </form>
+        <a href="login" class="text-center">已有账号，直接登录</a>
+      </div><!-- /.form-box -->
+    </div><!-- /.register-box -->
+
+  <script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/jquery-2.1.4.js"></script>
+		<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>
+	<script
+	src="<%=request.getContextPath()%>/resources/AdminLTE/plugins/iCheck/icheck.min.js"></script>
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+      $(document).ready(function(){
+    	  $("#registerForm").validate({
+    		  submitHandler:function(form){
+    			  var password=$('#password').val();
+        		  var passwordRetype=$('#passwordRetype').val();
+        		  if(password!=passwordRetype){
+        			  alert("兩次輸入的密碼不一樣");
+        			  return false;
+        		  }
+   
+    	          form.submit();
+    	        }
+    	       
+    	  });
+    	  
+      });
+    </script>
+  </body>
 </html>
