@@ -44,4 +44,23 @@ public class UserServiceImpl implements IUserService {
         userDao.save(user);
 
     }
+
+    /**
+     * 登录
+     *
+     * @param user
+     * @throws Exception
+     */
+    @Override
+    public User login(User user) throws Exception {
+        try {
+            User mode = userDao.login(user);
+            if (mode == null) {
+                throw new Exception();
+            }
+            return mode;
+        } catch (Exception e) {
+            throw new Exception();
+        }
+    }
 }

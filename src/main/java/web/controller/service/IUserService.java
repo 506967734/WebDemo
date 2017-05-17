@@ -12,4 +12,6 @@ public interface IUserService {
     public void addUser(User user) throws Exception;
 
     public void saveWithCheckDuplicate(User user) throws UserDuplicateException;
+
+    public User login(User user) throws Exception;
 }

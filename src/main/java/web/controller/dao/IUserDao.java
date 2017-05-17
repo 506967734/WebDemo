@@ -14,4 +14,6 @@ public interface IUserDao {
     public void addUser(User user) throws Exception; //添加
 
     public void save(User user) throws UserDuplicateException;//插入
+
+    public User login(User user) throws Exception;//插入
 }

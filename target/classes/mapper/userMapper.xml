@@ -32,4 +32,10 @@
         <include refid="user"/>
         from USER where username = #{username}
     </select>
+
+    <select id="login" resultMap="userResult">
+        select
+        <include refid="user"/>
+        from USER where username = #{username} AND password = #{password}
+    </select>
 </mapper>
